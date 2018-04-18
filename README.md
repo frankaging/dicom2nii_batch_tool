@@ -1,4 +1,4 @@
-# dicom2nii__batch_tool
+# dicom2nii_batch_tool
 A simple tool to batch processing conversion of dcm images to nii images using dcm2nii.exe. (Windows Only)
 Any question please contact ```wuzhengx at stanford dot efu```
 # Steps
