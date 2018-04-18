@@ -1,0 +1,26 @@
+####################################################################################################
+# Configuration file for batch process dicom2nii
+#
+# Caveat: If you have 100 folders for converting,
+# 		  you have to name the folers in recursive
+#         pattern: folder_1, foler_2, ...
+#		  The recursive pattern here is "folder_xxx".
+#		  If you have only one foler to convert,
+#		  just replace folder_xxx with actual folder name
+#		  in all three inputs.
+#		  Only use 3 xs in recursive foler placeholder
+#
+# Example: (Windows Directory Path)
+# If you want consume files from:
+# Y:\a\b\c\folder_xxx\
+# Then, output converted files to:
+# W:\x\y\z\folder_xxx\x\y\z\
+# With recursive pattern: folder_xxx (x represent any arbitrary recursive numbers)
+####################################################################################################
+
+
+# Only modify things after :: as the example
+SOURCE_DIR::Y:\a\b\c\folder_xxx\
+TARGET_RECURSIVE_PATTERN::folder_xxx
+OUTPUT_DIR::W:\x\y\z\folder_xxx\x\y\z\
+DICOM2NIIEXE_LOCATION::X:\a\b\c\dcm2nii.exe
