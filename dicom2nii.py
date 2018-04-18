@@ -49,7 +49,8 @@ if config_source_dir == "" or config_output_dir == "" or config_recursive_patter
 
 from sys import platform
 # TODO !=
-if platform != "win32":
+# TODO: this is just for bypassing
+if False:
     print("We only support windows as for now!")
     sys.exit(0)
 else:
@@ -60,10 +61,11 @@ else:
         print("Check your configuration file!")
         sys.exit(0)
     exe_location_li[0] = exe_location_li[0] + "\\"
+    print(exe_location_li[0])
     exe_path_recursive = os.path.join("")
     for i in exe_location_li:
         exe_path_recursive = os.path.join(exe_path_recursive, i)
-    # print exe_path_recursive
+    print exe_path_recursive
 
     config_source_dir_li = config_source_dir.split("\\" + config_recursive_pattern + "\\")
     if config_source_dir_li[0] == "" or len(config_source_dir_li) > 2:
@@ -79,13 +81,14 @@ else:
     pre_path_recursive = os.path.join("")
     for i in config_source_dir_pre_li:
         pre_path_recursive = os.path.join(pre_path_recursive, i)
-    # print pre_path_recursive
+    print pre_path_recursive
     # config_source_dir_pro
     config_source_dir_pro_li = config_source_dir_li[1].split("\\")
+    # print(config_source_dir_pro_li)
     pro_path_recursive = os.path.join("")
     for i in config_source_dir_pro_li:
         pro_path_recursive = os.path.join(pro_path_recursive, i)
-    # print pro_path_recursive
+    print pro_path_recursive
 
     # config_output_dir_pre
     config_output_dir_li = config_output_dir.split("\\" + config_recursive_pattern + "\\")
@@ -126,26 +129,32 @@ _convert_engine_dir = os.path.join(exe_path_recursive)
 
 for _candidate_dir in _dirs:
 
-    if _candidate_dir.startswith('config_recursive_pattern_trim'):
+    if _candidate_dir.startswith(config_recursive_pattern_trim):
 
         _search_dir = os.path.join(_search_base_dir, _candidate_dir,
                                    _search_sub_dir)
-        for f_name in os.listdir(_search_dir):
-            try:
-                _output_dir = os.path.join(output_pre_path_recursive,
-                        _candidate_dir, output_pro_path_recursive)
-                if not os.path.exists(_output_dir):
-                    os.makedirs(_output_dir)
-                args = [  # remove date and unzip options
-                    _convert_engine_dir,
-                    '-g',
-                    'n',
-                    '-d',
-                    'n',
-                    '-o',
-                    _output_dir,
-                    os.path.join(_search_dir, f_name),
-                    ]
-                subprocess.call(args)
-            except OSError:
-                print 'Temp Error: <code:explanations>'
+        print ("Searching in this directory:" + _search_dir + "...\n")
+        try:
+            for f_name in os.listdir(_search_dir):
+                print ("Converting file: " + f_name + "!\n")
+                try:
+                    _output_dir = os.path.join(output_pre_path_recursive,
+                            _candidate_dir, output_pro_path_recursive)
+                    if not os.path.exists(_output_dir):
+                        os.makedirs(_output_dir)
+                    args = [  # remove date and unzip options
+                        _convert_engine_dir,
+                        '-g',
+                        'n',
+                        '-d',
+                        'n',
+                        '-o',
+                        _output_dir,
+                        os.path.join(_search_dir, f_name),
+                        ]
+                    subprocess.call(args)
+                    break
+                except OSError:
+                    print 'Temp Error: <code:explanations>'
+        except:
+            pass
