@@ -4,7 +4,7 @@
 #
 # Please Read Configuration File and Config Before Running
 #
-# Author = zhengxuan.zen.wu@gmail.com
+# Author = wuzhengx@stanford.edu
 # Batch Process For dicom2nii.exe
 ###########################################################
 
