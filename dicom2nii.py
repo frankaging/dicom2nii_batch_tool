@@ -126,11 +126,7 @@ _convert_engine_dir = os.path.join(exe_path_recursive)
 
 for _candidate_dir in _dirs:
 
-    # if the folder has a name starting with RDOC_, then we are going to convert
-
     if _candidate_dir.startswith('config_recursive_pattern_trim'):
-
-        # search \3 - MRI\DICOM_UNZIP\10minute_rest_mb\ under this folder
 
         _search_dir = os.path.join(_search_base_dir, _candidate_dir,
                                    _search_sub_dir)
